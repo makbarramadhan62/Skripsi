@@ -75,13 +75,15 @@ from skimage.feature import greycomatrix, greycoprops
 x = 0
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../hasil_ekstraksi_orde1_glcm.csv', 'w', newline='') as csvfile:
+with open('../../Code Upload/csv/hasil_ekstraksi_orde1_glcm_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
+    # writer.writerow(
+    #     ['label', 'Mean_h', 'Variance_h', 'Skewness_h', 'Kurtosis_h', 'Entropy_h', 'Mean_s', 'Variance_s', 'Skewness_s', 'Kurtosis_s', 'Entropy_s', 'Mean_v', 'Variance_v', 'Skewness_v', 'Kurtosis_v', 'Entropy_v', 'Contrast', 'Homogeneity', 'Energy'])
     writer.writerow(
-        ['label', 'Mean_h', 'Variance_h', 'Skewness_h', 'Kurtosis_h', 'Entropy_h', 'Mean_s', 'Variance_s', 'Skewness_s', 'Kurtosis_s', 'Entropy_s', 'Mean_v', 'Variance_v', 'Skewness_v', 'Kurtosis_v', 'Entropy_v', 'Contrast', 'Homogeneity', 'Energy'])
+        ['Mean_h', 'Variance_h', 'Skewness_h', 'Kurtosis_h', 'Entropy_h', 'Mean_s', 'Variance_s', 'Skewness_s', 'Kurtosis_s', 'Entropy_s', 'Mean_v', 'Variance_v', 'Skewness_v', 'Kurtosis_v', 'Entropy_v'])
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../DataSet_Training'):
+    for root, dirs, files in os.walk('../../DataSet_Testing'):
 
         x = x+1
         # mengambil nama folder terakhir dari root
@@ -141,20 +143,24 @@ with open('../hasil_ekstraksi_orde1_glcm.csv', 'w', newline='') as csvfile:
             entropy_v = stats.entropy(hist_v)
 
             # Hitung matriks glcm
-            image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-            glcm = greycomatrix(image_gray, [5], [0],
-                                levels=256, symmetric=True, normed=True)
+            # image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            # glcm = greycomatrix(image_gray, [5], [0],
+            #                     levels=256, symmetric=True, normed=True)
 
             # Hitung fitur glcm
-            contrast = greycoprops(glcm, 'contrast')[0][0]
-            homogeneity = greycoprops(glcm, 'homogeneity')[0][0]
-            energy = greycoprops(glcm, 'energy')[0][0]
+            # contrast = greycoprops(glcm, 'contrast')[0][0]
+            # homogeneity = greycoprops(glcm, 'homogeneity')[0][0]
+            # energy = greycoprops(glcm, 'energy')[0][0]
 
             # Memasukkan nilai R,G,B, Contrast, Homogeneity dan Energy  ke dalam file CSV dengan label tertentu
-            writer.writerow([(x-1), mean_h, variance_h, skewness_h,
+            # writer.writerow([(x-1), mean_h, variance_h, skewness_h,
+            #                 kurtosis_h, entropy_h, mean_s, variance_s, skewness_s,
+            #                 kurtosis_s, entropy_s, mean_v, variance_v, skewness_v,
+            #                 kurtosis_v, entropy_v, contrast, homogeneity, energy])
+            writer.writerow([mean_h, variance_h, skewness_h,
                             kurtosis_h, entropy_h, mean_s, variance_s, skewness_s,
                             kurtosis_s, entropy_s, mean_v, variance_v, skewness_v,
-                            kurtosis_v, entropy_v, contrast, homogeneity, energy])
+                            kurtosis_v, entropy_v])
 
 # Menutup file CSV
 csvfile.close()

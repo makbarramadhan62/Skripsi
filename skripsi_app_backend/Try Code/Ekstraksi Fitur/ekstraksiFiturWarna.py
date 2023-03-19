@@ -6,14 +6,14 @@ import csv
 x = 0
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../../Code Upload/csv/hasil_ekstraksi_rata2_hsv_training.csv', 'w', newline='') as csvfile:
+with open('../../Code Upload/csv/hasil_ekstraksi_rata2_hsv_testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     # writer.writerow(['H', 'S', 'V'])
-    writer.writerow(['label', 'H', 'S', 'V'])
+    writer.writerow(['H', 'S', 'V', 'label'])
     # writer.writerow(['label', 'R', 'G', 'B'])
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../../DataSet_training'):
+    for root, dirs, files in os.walk('../../DataSet_testing'):
 
         x = x+1
         # mengambil nama folder terakhir dari root
@@ -76,5 +76,5 @@ with open('../../Code Upload/csv/hasil_ekstraksi_rata2_hsv_training.csv', 'w', n
             # features.append(np.mean(blue))
 
             # memasukkan list ke dalam file CSV dengan label tertentu
-            writer.writerow([(x-1), features[0], features[1], features[2]])
-            # writer.writerow([features[0], features[1], features[2]])
+            # writer.writerow([features[0], features[1], features[2], (x-1)])
+            writer.writerow([features[0], features[1], features[2], (x-1)])
