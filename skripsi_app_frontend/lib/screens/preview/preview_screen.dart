@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:skripsi_app_frontend/screens/failed/failed_screen.dart';
 import 'package:skripsi_app_frontend/screens/result/models/list_data.dart';
 import 'package:skripsi_app_frontend/screens/result/result_screen.dart';
 import 'package:skripsi_app_frontend/utilities/colors.dart';
@@ -46,7 +47,10 @@ class _PreviewScreenState extends State<PreviewScreen> {
       });
     } else {
       setState(() {
-        print('Failed to classify image');
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const FailedScreen()),
+            (route) => false);
       });
     }
   }

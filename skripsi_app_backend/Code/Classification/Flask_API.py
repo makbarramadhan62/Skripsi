@@ -4,8 +4,14 @@ import cv2
 import numpy as np
 import pandas as pd
 import joblib
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+
+# create temporary folder for image uploads
+if not os.path.exists('uploads'):
+    os.makedirs('uploads')
 
 # Load pre-trained model
 nb = joblib.load('../Model/NaiveBayes3.pkl')
@@ -60,6 +66,10 @@ def classify():
     # Read the image file into a NumPy array
     image = cv2.imdecode(np.fromstring(
         image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+
+    # save image to temporary folder
+    filename = secure_filename(image_file.filename)
+    image_file.save(os.path.join('uploads', filename))
 
     # Preprocess image and extract features
     X = preprocess_and_extract_features(image)
