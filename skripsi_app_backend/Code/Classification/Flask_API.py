@@ -1,99 +1,86 @@
 from sklearn.metrics import accuracy_score, classification_report
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import cv2
 import numpy as np
 import pandas as pd
 import joblib
 
-
-def preprocessing(image):
-
-    # inisialisasi ukuran resize
-    width, height = 1080, 1920
-
-    # melakukan resize pada file
-    image = cv2.resize(image, (width, height),
-                       interpolation=cv2.INTER_AREA)
-    # melakukan cropping pada file
-    image = image[420:1500, 0:1080]
-
-    return image
-
-
-def extract_features(preprocessed_image):
-
-    # mengubah gambar ke dalam format HSV
-    hsv = cv2.cvtColor(preprocessed_image, cv2.COLOR_BGR2HSV)
-
-    # mengambil nilai hue (H) dari gambar
-    hue = hsv[:, :, 0]
-
-    # mengambil nilai saturation (S) dari gambar
-    saturation = hsv[:, :, 1]
-
-    # mengambil nilai value (V) dari gambar
-    value = hsv[:, :, 2]
-
-    # membuat list untuk menyimpan hasil ekstraksi fitur
-    features = []
-
-    # menambahkan nilai H ke dalam list
-    features.append(np.mean(hue))
-
-    # menambahkan nilai S ke dalam list
-    features.append(np.mean(saturation))
-
-    # menambahkan nilai V ke dalam list
-    features.append(np.mean(value))
-
-    return features
-
-
-def classify(image):
-    # Load pre-trained model
-    nb = joblib.load('../Model/NaiveBayes.pkl')
-
-    image = cv2.imread(image)
-
-    # Preprocess image
-    img_array = preprocessing(image)
-
-    # Extract features
-    X = extract_features(img_array)
-
-    # Predict label
-    y_pred = nb.predict([X])
-
-    # Print label
-    print(f'Label: {y_pred[0]}')
-
-    return y_pred
-
-    # # Load true label
-    # df = pd.read_csv('../csv/hasil_ekstraksi_rata2_hsv.csv')
-    # y_true = df['label']
-
-    # # Print accuracy and precision
-    # print(classification_report(y_true, y_pred))
-    # print(f'Accuracy: {accuracy_score(y_true, y_pred)}')
-
-
 app = Flask(__name__)
+
+# Load pre-trained model
+nb = joblib.load('../Model/NaiveBayes3.pkl')
+
+# Define function for preprocessing and feature extraction
+
+
+def preprocess_and_extract_features(image):
+    # Load image
+    # image = cv2.imread(image_path)
+
+    # Crop image to square
+    height, width, channels = image.shape
+    if height > width:
+        crop_size = width
+        y = int((height - width) / 2)
+        x = 0
+    else:
+        crop_size = height
+        x = int((width - height) / 2)
+        y = 0
+    cropped_image = image[y:y+crop_size, x:x+crop_size]
+
+    # Resize image
+    resized_image = cv2.resize(cropped_image, (1080, 1080))
+
+    # Convert image to HSV color space
+    hsv_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2HSV)
+
+    # Compute mean of HSV values for each channel
+    h_mean = np.mean(hsv_image[:, :, 0])
+    s_mean = np.mean(hsv_image[:, :, 1])
+    v_mean = np.mean(hsv_image[:, :, 2])
+
+    # Create feature array
+    X = np.array([h_mean, s_mean, v_mean])
+
+    return X
 
 
 @app.route('/')
 def home():
-    return 'API Python sedang berjalan'
+    return 'Welcome to API Grapesense!'
 
 
 @app.route('/klasifikasi', methods=['POST'])
-def klasifikasi():
-    if request.method == 'POST':
-        classify('../hama_tungau (17).jpg')
-        return 'Gambar telah diklasifikasikan'
-    else:
-        return 'Metode permintaan yang diberikan tidak valid'
+# Define function for prediction
+def classify():
+    # Get the image file from the request
+    image_file = request.files['image']
+
+    # Read the image file into a NumPy array
+    image = cv2.imdecode(np.fromstring(
+        image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+
+    # Preprocess image and extract features
+    X = preprocess_and_extract_features(image)
+
+    # Reshape feature array
+    X_reshaped = X.reshape(1, -1)
+
+    # Create dataframe with feature names
+    feature_names = ['H', 'S', 'V']
+    X_new = pd.DataFrame(data=X_reshaped, columns=feature_names)
+
+    # Predict label
+    y_pred = nb.predict(X_new)
+
+    # result
+    result = int(y_pred[0])
+
+    # Print label
+    # print(f'Label: {y_pred[0]}')
+    return jsonify({'Label': result})
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

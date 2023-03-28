@@ -71,33 +71,6 @@ class _ResultScreenState extends State<ResultScreen> {
                     SizedBox(
                       height: size.height * 0.025,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.circle,
-                          size: 10,
-                          color: KButtonClr,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.025,
-                        ),
-                        const Text(
-                          "Accuracy : ",
-                          style: TextStyle(
-                            color: KButtonClr,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const Text(
-                          "85%",
-                          style: TextStyle(
-                            color: KButtonClr,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
                 const Spacer(),

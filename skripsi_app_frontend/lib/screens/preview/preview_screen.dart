@@ -19,29 +19,35 @@ class PreviewScreen extends StatefulWidget {
 }
 
 class _PreviewScreenState extends State<PreviewScreen> {
-  int idx = 2;
-  get index => idx - 1;
-
-  final myController = TextEditingController();
-  String result = '';
+  // int idx = 2;
+  // get index => idx - 1;
+  int? result;
 
   Future<void> sendData() async {
-    final response = await http.post(
-      Uri.parse('http://10.0.2.2:5000/klasifikasi'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'data': myController.text,
-      }),
+    final url = Uri.parse(
+        'http://192.168.1.10:5000/klasifikasi'); // ganti dengan URL endpoint API Anda
+    final request = http.MultipartRequest('POST', url);
+    final imageBytes = await widget.image!.readAsBytes();
+
+    final multipartFile = http.MultipartFile.fromBytes(
+      'image',
+      imageBytes,
+      filename: 'my-image.jpg',
     );
+    request.files.add(multipartFile);
+
+    final response = await request.send();
+    final jsonResponse = jsonDecode(await response.stream.bytesToString());
+
     if (response.statusCode == 200) {
+      final prediction = jsonResponse['Label'];
       setState(() {
-        result = response.body;
+        result = prediction;
       });
-      print(result);
     } else {
-      throw Exception('Failed to load response');
+      setState(() {
+        print('Failed to classify image');
+      });
     }
   }
 
@@ -110,13 +116,13 @@ class _PreviewScreenState extends State<PreviewScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    // await sendData();
+                    await sendData();
                     // ignore: use_build_context_synchronously
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ResultScreen(
-                            dataInfo: data[index],
+                            dataInfo: data[result!],
                           ),
                         ),
                         (route) => false);
