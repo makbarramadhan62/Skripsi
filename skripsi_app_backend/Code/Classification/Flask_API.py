@@ -9,21 +9,19 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# create temporary folder for image uploads
+# membuat folder untuk menampung gambar yang di upload dari apps
 if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
-# Load pre-trained model
-nb = joblib.load('../Model/NaiveBayes3.pkl')
-
-# Define function for preprocessing and feature extraction
+# Load model
+nb = joblib.load('../Model/NB_HSV.pkl')
 
 
 def preprocess_and_extract_features(image):
     # Load image
     # image = cv2.imread(image_path)
 
-    # Crop image to square
+    # Crop image menjadi kotak (1:1)
     height, width, channels = image.shape
     if height > width:
         crop_size = width
@@ -38,10 +36,10 @@ def preprocess_and_extract_features(image):
     # Resize image
     resized_image = cv2.resize(cropped_image, (1080, 1080))
 
-    # Convert image to HSV color space
+    # Convert image ke HSV
     hsv_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2HSV)
 
-    # Compute mean of HSV values for each channel
+    # Perhitungan rata rata hsv
     h_mean = np.mean(hsv_image[:, :, 0])
     s_mean = np.mean(hsv_image[:, :, 1])
     v_mean = np.mean(hsv_image[:, :, 2])
@@ -58,33 +56,32 @@ def home():
 
 
 @app.route('/klasifikasi', methods=['POST'])
-# Define function for prediction
 def classify():
-    # Get the image file from the request
+    # Mendapatkan file dari request API
     image_file = request.files['image']
 
-    # Read the image file into a NumPy array
+    # Membaca gambar dari file ke numpy array
     image = cv2.imdecode(np.fromstring(
         image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
 
-    # save image to temporary folder
+    # Menyimpan gambar ke folder uploads
     filename = secure_filename(image_file.filename)
     image_file.save(os.path.join('uploads', filename))
 
-    # Preprocess image and extract features
+    # Melakukan pre processing dan ekstraksi fitur
     X = preprocess_and_extract_features(image)
 
-    # Reshape feature array
+    # Mengubah bentuk array
     X_reshaped = X.reshape(1, -1)
 
-    # Create dataframe with feature names
+    # Membuat dataframe menggunakan nama fitur
     feature_names = ['H', 'S', 'V']
     X_new = pd.DataFrame(data=X_reshaped, columns=feature_names)
 
     # Predict label
     y_pred = nb.predict(X_new)
 
-    # result
+    # Hasil
     result = int(y_pred[0])
 
     # Print label
