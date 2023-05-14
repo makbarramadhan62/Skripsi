@@ -6,12 +6,12 @@ import csv
 x = 0
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../../Code Upload/csv/hasil_ekstraksi_rata2_hsv_testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/2_Label/HSV/HSV_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['H', 'S', 'V', 'label'])
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../../DataSet_testing'):
+    for root, dirs, files in os.walk('../Dataset/2_Label/DataSet_Testing'):
 
         x = x+1
         # mengambil nama folder terakhir dari root

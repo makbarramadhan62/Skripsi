@@ -22,7 +22,7 @@ class PreviewScreen extends StatefulWidget {
 class _PreviewScreenState extends State<PreviewScreen> {
   // int idx = 2;
   // get index => idx - 1;
-  int? result;
+  int? result = 1;
 
   Future<void> sendData() async {
     final url = Uri.parse(
@@ -120,7 +120,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    await sendData();
+                    // await sendData();
                     // ignore: use_build_context_synchronously
                     Navigator.pushAndRemoveUntil(
                         context,

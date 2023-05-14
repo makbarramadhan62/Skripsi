@@ -1,7 +1,6 @@
 import cv2
-import numpy as np
 
-image = cv2.imread("../MD14.bmp")
+image = cv2.imread("../image.jpg")
 tmp = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 _, mask = cv2.threshold(tmp, 127, 255, cv2.THRESH_BINARY)
 mask = cv2.dilate(mask.copy(), None, iterations=10)
