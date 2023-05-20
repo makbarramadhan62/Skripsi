@@ -1,0 +1,12 @@
+[TASK BackEnd]
+- PreProcessing Dataset without Backgorund 										[Done]
+- Ekstraksi Fitur ulang semua dataset with background 							[Done]
+- Ekstraksi Fitur ulang semua dataset without background						[Done]
+- Training ulang semua hasil ekstraksi fitur with background					[Done]
+- Update Report Classification														[Done]
+- Training ulang semua hasil ekstraksi fitur without background				[Done]
+- Update Report Classification														[Done]
+
+[TASK FrontEnd]
+- Failed Screen Design (kondisi ketika API tidak terkoneksi)
+- Loading Animation
