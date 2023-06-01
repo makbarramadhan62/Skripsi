@@ -50,14 +50,14 @@ class _SplashScreenState extends State<SplashScreen> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: KBetaClr,
+                    color: kBetaClr,
                     width: 2,
                   ),
                 ),
                 child: const Center(
                   child: Text(
                     "Beta Version",
-                    style: TextStyle(color: KBetaClr),
+                    style: TextStyle(color: kBetaClr),
                   ),
                 ),
               )

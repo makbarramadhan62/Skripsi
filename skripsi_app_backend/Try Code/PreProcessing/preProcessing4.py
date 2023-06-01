@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Load image
-img = cv2.imread('../image.jpg')
+img = cv2.imread('../../Code/Dataset/New Dataset/20230529_090918.jpg')
 
 # Konversi gambar ke skala abu-abu
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -43,15 +43,22 @@ result = cv2.bitwise_and(img, img, mask=mask2)
 
 # Menggambar kotak ROI untuk di tampilkan
 cv2.rectangle(result, (x, y), (x+w, y+h), (0, 255, 0), 2)
+cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+# Resize image
+resized_img = cv2.resize(img, (720, 1280))
+resized_result = cv2.resize(result, (720, 1280))
 
 # Tampilkan gambar asli, ROI, dan gambar hasil segmentasi
-cv2.imshow('Original', img)
+cv2.imshow('Original', resized_img)
 # cv2.imshow('ROI', roi)
-cv2.imshow('Result', result)
+cv2.imshow('Result', resized_result)
 
 # Crop gambar hasil segmentasi menggunakan ROI
-cropped = result[y:y+h, x:x+w]
-cv2.imshow('Cropped', cropped)
+cropped = img[y:y+h, x:x+w]
+resized_cropped = cv2.resize(cropped, (256, 256))
+
+cv2.imshow('Cropped', resized_cropped)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

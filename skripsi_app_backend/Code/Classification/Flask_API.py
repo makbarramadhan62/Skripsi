@@ -1,4 +1,4 @@
-from sklearn.metrics import accuracy_score, classification_report
+# from sklearn.metrics import accuracy_score, classification_report
 from flask import Flask, request, jsonify
 import cv2
 import numpy as np
@@ -14,7 +14,7 @@ if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
 # Load model
-nb = joblib.load('../Model/NB_HSV.pkl')
+nb = joblib.load('../Model/NB_Model_HSV_5Label.pkl')
 
 
 def preprocess_and_extract_features(image):
@@ -60,13 +60,15 @@ def classify():
     # Mendapatkan file dari request API
     image_file = request.files['image']
 
-    # Membaca gambar dari file ke numpy array
-    image = cv2.imdecode(np.fromstring(
-        image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
-
     # Menyimpan gambar ke folder uploads
     filename = secure_filename(image_file.filename)
-    image_file.save(os.path.join('uploads', filename))
+    image_path = os.path.join('uploads', filename)
+    image_file.save(image_path)
+
+    # Membaca gambar dari file ke numpy array
+    # image = cv2.imdecode(np.fromstring(
+    #     image_file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+    image = cv2.imread(image_path)
 
     # Melakukan pre processing dan ekstraksi fitur
     X = preprocess_and_extract_features(image)

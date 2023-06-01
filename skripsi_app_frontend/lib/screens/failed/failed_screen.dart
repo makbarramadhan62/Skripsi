@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skripsi_app_frontend/screens/home/home_screen.dart';
 
 import '../../utilities/colors.dart';
+import '../home/home_screen.dart';
 
 class FailedScreen extends StatelessWidget {
   const FailedScreen({super.key});
@@ -11,22 +11,14 @@ class FailedScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: KButtonClr,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        iconTheme: const IconThemeData(color: kButtonClr),
         centerTitle: true,
         title: const Text(
-          "Preview",
+          "Failed",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: KButtonClr,
+            color: kButtonClr,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -35,45 +27,58 @@ class FailedScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(),
-                const Spacer(
-                  flex: 3,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    // ignore: use_build_context_synchronously
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeScreen(),
-                        ),
-                        (route) => false);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: KButtonClr,
-                    minimumSize: Size(size.width, 50),
-                    shadowColor: Colors.grey,
-                    elevation: 5,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: size.height * 0.125,
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/logo_failed.png',
+                    width: 300,
+                    height: 300,
                   ),
-                  child: const Text(
-                    "Detect",
+                  const Text(
+                    "Failed Connect to the Server",
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              const Spacer(),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                      (route) => false);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kButtonClr,
+                  minimumSize: Size(size.width, 50),
+                  shadowColor: Colors.grey,
+                  elevation: 5,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                  ),
+                ),
+                child: const Text(
+                  "Back to Home",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),

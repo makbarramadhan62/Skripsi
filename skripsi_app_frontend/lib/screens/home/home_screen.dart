@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:skripsi_app_frontend/screens/home/components/sidebar.dart';
 import 'package:skripsi_app_frontend/screens/preview/preview_screen.dart';
 import 'package:skripsi_app_frontend/utilities/colors.dart';
 
+import '../how_to_use/how_to_use_screen.dart';
 import 'components/button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -38,14 +40,32 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: const SideBar(),
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.question_mark_outlined,
+              size: 28,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HowToUseScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+        iconTheme: const IconThemeData(color: kHighlightTxtClr),
         centerTitle: true,
         title: const Text(
           "Home",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: KButtonClr,
+            color: kButtonClr,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -77,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color: KBlackClr,
+                        color: kBlackClr,
                       ),
                     ),
                     const Text(
@@ -85,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color: KHighlightTxtClr,
+                        color: kHighlightTxtClr,
                       ),
                     ),
                   ],
@@ -94,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Text(
                   "Start detecting by adding a picture through the gallery or camera!",
                   style: TextStyle(
-                    color: KSubTxtClr,
+                    color: kSubTxtClr,
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
@@ -111,8 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       context: context,
                       pageBuilder: (context, _, __) => Center(
                         child: Container(
-                          height: 250,
-                          width: 250,
+                          height: 225,
+                          width: 225,
                           margin: const EdgeInsets.symmetric(
                             horizontal: 16,
                           ),
@@ -137,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
-                                      color: KBlackClr,
+                                      color: kBlackClr,
                                     ),
                                   ),
                                   const SizedBox(
@@ -199,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: KButtonClr,
+                    backgroundColor: kButtonClr,
                     minimumSize: Size(size.width, 50),
                     shadowColor: Colors.grey,
                     elevation: 5,
@@ -223,5 +243,67 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+enum DialogsAction { yes, cancel }
+
+class AlertDialogs {
+  static Future<DialogsAction> yesCancelDialog(
+    BuildContext context,
+    String title,
+    String body,
+  ) async {
+    final action = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: kHighlightTxtClr,
+            ),
+          ),
+          content: Text(
+            body,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: kHighlightTxtClr,
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                  onPressed: () =>
+                      Navigator.of(context).pop(DialogsAction.cancel),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(
+                        color: kHighlightTxtClr, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () => Navigator.of(context).pop(DialogsAction.yes),
+                  child: const Text(
+                    'Yes',
+                    style: TextStyle(
+                        color: kDangerClr, fontWeight: FontWeight.w700),
+                  ),
+                )
+              ],
+            )
+          ],
+        );
+      },
+    );
+    return (action != null) ? action : DialogsAction.cancel;
   }
 }

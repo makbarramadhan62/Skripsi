@@ -1,6 +1,6 @@
 import cv2
 
-image = cv2.imread("../Test_Data/20221027_151539.jpg")
+image = cv2.imread("../20230529_091443.jpg")
 
 # Crop image to square
 height, width, channels = image.shape

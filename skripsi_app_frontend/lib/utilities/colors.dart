@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
-const KBetaClr = Color(0xFF92B60E);
-const KHighlightTxtClr = Color(0xFF649214);
-const KSubTxtClr = Color(0xFF707070);
-const KButtonClr = Color(0xFF347018);
-const KBlackClr = Color(0xFF202020);
+const kBetaClr = Color(0xFF92B60E);
+const kHighlightTxtClr = Color(0xFF649214);
+const kSubTxtClr = Color(0xFF707070);
+const kButtonClr = Color(0xFF347018);
+const kBlackClr = Color(0xFF202020);
+const kDangerClr = Color(0xFFEF5151);

@@ -16,7 +16,7 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       onPressed: press,
       style: ElevatedButton.styleFrom(
-        backgroundColor: KButtonClr,
+        backgroundColor: kButtonClr,
         minimumSize: const Size(165, 40),
         shadowColor: Colors.grey,
         elevation: 5,

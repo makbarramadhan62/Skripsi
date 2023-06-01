@@ -1,7 +1,8 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:skripsi_app_frontend/screens/failed/failed_screen.dart';
 import 'package:skripsi_app_frontend/screens/result/models/list_data.dart';
 import 'package:skripsi_app_frontend/screens/result/result_screen.dart';
@@ -20,46 +21,85 @@ class PreviewScreen extends StatefulWidget {
 }
 
 class _PreviewScreenState extends State<PreviewScreen> {
-  // int idx = 2;
-  // get index => idx - 1;
-  int? result = 1;
-
-  Future<void> sendData() async {
-    final url = Uri.parse(
-        'http://192.168.1.10:5000/klasifikasi'); // ganti dengan URL endpoint API Anda
-    final request = http.MultipartRequest('POST', url);
-    final imageBytes = await widget.image!.readAsBytes();
-
-    final multipartFile = http.MultipartFile.fromBytes(
-      'image',
-      imageBytes,
-      filename: 'my-image.jpg',
-    );
-    request.files.add(multipartFile);
-
-    final response = await request.send();
-    final jsonResponse = jsonDecode(await response.stream.bytesToString());
-
-    if (response.statusCode == 200) {
-      final prediction = jsonResponse['Label'];
-      setState(() {
-        result = prediction;
-      });
-    } else {
-      setState(() {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const FailedScreen()),
-            (route) => false);
-      });
-    }
-  }
+  int? result;
+  Timer? _timer;
+  bool isLoading = false;
+  bool isDetect = false;
+  CancelToken? _cancelToken;
 
   late final DataInfo dataInfo;
 
   @override
   void initState() {
     super.initState();
+    _cancelToken = CancelToken();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    const int timeoutDurationInSeconds = 10;
+    _timer = Timer(const Duration(seconds: timeoutDurationInSeconds), () {
+      _cancelRequest('Request timed out');
+    });
+  }
+
+  void _cancelRequest(String reason) {
+    _cancelToken?.cancel(reason);
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void dispose() {
+    _cancelToken?.cancel("Request cancelled");
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> sendData() async {
+    final now = DateTime.now();
+    final formattedTime = DateFormat('yyyy_MM_dd').format(now);
+    final filename = 'image_$formattedTime.jpg';
+    const int timeoutDurationInSeconds = 10;
+
+    try {
+      final dio = Dio();
+      dio.options.sendTimeout =
+          const Duration(seconds: timeoutDurationInSeconds);
+      const url =
+          'http://10.0.2.2:5000/klasifikasi'; // Ganti dengan URL endpoint API Anda
+      final imageBytes = widget.image!.readAsBytesSync();
+
+      final formData = FormData.fromMap({
+        'image': MultipartFile.fromBytes(
+          imageBytes,
+          filename: filename,
+        ),
+      });
+
+      final response = await dio.post(
+        url,
+        data: formData,
+        cancelToken: _cancelToken,
+      );
+
+      if (response.statusCode == 200) {
+        _timer?.cancel();
+        final jsonResponse = response.data;
+        final prediction = jsonResponse['Label'];
+        setState(() {
+          result = prediction;
+          isLoading = false;
+          isDetect = true;
+        });
+      }
+    } catch (error) {
+      setState(() {
+        isLoading = false;
+        isDetect = false;
+      });
+    }
   }
 
   @override
@@ -70,7 +110,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: KButtonClr,
+            color: kButtonClr,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -82,7 +122,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: KButtonClr,
+            color: kButtonClr,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -101,7 +141,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: KBlackClr.withOpacity(0.5),
+                        color: kBlackClr.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 5,
                         offset: const Offset(0, 3),
@@ -120,19 +160,33 @@ class _PreviewScreenState extends State<PreviewScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    // await sendData();
-                    // ignore: use_build_context_synchronously
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResultScreen(
-                            dataInfo: data[result!],
-                          ),
-                        ),
-                        (route) => false);
+                    setState(() {
+                      isLoading = true;
+                    });
+                    await sendData();
+                    isDetect
+                        // ignore: use_build_context_synchronously
+                        ? Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ResultScreen(
+                                dataInfo: data[result!],
+                              ),
+                            ),
+                            (route) => false,
+                          )
+                        // ignore: use_build_context_synchronously
+                        : Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const FailedScreen()),
+                            (route) => false,
+                          );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: KButtonClr,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(5),
+                    backgroundColor: kButtonClr,
                     minimumSize: Size(size.width, 50),
                     shadowColor: Colors.grey,
                     elevation: 5,
@@ -142,13 +196,37 @@ class _PreviewScreenState extends State<PreviewScreen> {
                       ),
                     ),
                   ),
-                  child: const Text(
-                    "Detect",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  child: isLoading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 3,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Please Wait...",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          ],
+                        )
+                      : const Text(
+                          "Detect",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                 )
               ],
             ),

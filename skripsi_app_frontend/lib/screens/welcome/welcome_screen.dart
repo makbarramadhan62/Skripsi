@@ -12,8 +12,8 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-            width: size.width * 1.15,
-            bottom: 110,
+            width: size.width * 1.2,
+            bottom: 120,
             left: 75,
             child: Image.asset('assets/images/gambar_daun_up.png'),
           ),
@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: KBlackClr,
+                          color: kBlackClr,
                         ),
                       ),
                       const SizedBox(
@@ -43,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
                       const Icon(
                         Icons.circle,
                         size: 10,
-                        color: KButtonClr,
+                        color: kButtonClr,
                       ),
                       const SizedBox(
                         height: 10,
@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
-                          color: KBlackClr,
+                          color: kBlackClr,
                         ),
                       ),
                       Row(
@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                           const Text(
                             "Grapsense",
                             style: TextStyle(
-                              color: KHighlightTxtClr,
+                              color: kHighlightTxtClr,
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
                             ),
@@ -76,14 +76,14 @@ class WelcomeScreen extends StatelessWidget {
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                color: KBetaClr,
+                                color: kBetaClr,
                                 width: 2,
                               ),
                             ),
                             child: const Center(
                               child: Text(
                                 "Beta",
-                                style: TextStyle(color: KBetaClr),
+                                style: TextStyle(color: kBetaClr),
                               ),
                             ),
                           ),
@@ -97,7 +97,7 @@ class WelcomeScreen extends StatelessWidget {
                         child: Text(
                           "Deteksi cepat penyakit anggur Anda berdasarkan warna daunnya dengan Grapesense!",
                           style: TextStyle(
-                            color: KSubTxtClr,
+                            color: kSubTxtClr,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
@@ -110,7 +110,7 @@ class WelcomeScreen extends StatelessWidget {
                     child: Text(
                       "By clicking on Get Started, you agree to grapsense`s Terms and Conditions of Use",
                       style: TextStyle(
-                        color: KSubTxtClr,
+                        color: kSubTxtClr,
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
@@ -130,7 +130,7 @@ class WelcomeScreen extends StatelessWidget {
                           (route) => false);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: KButtonClr,
+                      backgroundColor: kButtonClr,
                       minimumSize: Size(size.width, 50),
                       shadowColor: Colors.grey,
                       elevation: 5,

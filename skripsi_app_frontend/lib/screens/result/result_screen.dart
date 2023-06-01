@@ -24,7 +24,7 @@ class _ResultScreenState extends State<ResultScreen> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: KButtonClr,
+            color: kButtonClr,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -53,7 +53,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
-                        color: KBlackClr,
+                        color: kBlackClr,
                       ),
                     ),
                     SizedBox(
@@ -64,7 +64,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: KBlackClr,
+                        color: kBlackClr,
                       ),
                       textAlign: TextAlign.justify,
                     ),
@@ -84,7 +84,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         (route) => false);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: KButtonClr,
+                    backgroundColor: kButtonClr,
                     minimumSize: Size(size.width, 50),
                     shadowColor: Colors.grey,
                     elevation: 5,

@@ -7,13 +7,13 @@ from skimage.feature import greycomatrix, greycoprops
 x = 0
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/without_Background/5_label/RGB_GLCM/RGB_GLCM_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/with_Background/5_label/RGB_GLCM/RGB_GLCM[0]4_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
-        ['label', 'R', 'G', 'B', 'Contrast', 'Homogeneity', 'Energy'])
+        ['label', 'R', 'G', 'B', 'correlation', 'homogeneity', 'contrast'])
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/without_Background/5_label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/with_Background/5_label/DataSet_Testing'):
 
         x = x+1
         # mengambil nama folder terakhir dari root
@@ -39,9 +39,9 @@ with open('../CSV/without_Background/5_label/RGB_GLCM/RGB_GLCM_Training.csv', 'w
                                 levels=256, symmetric=True, normed=True)
 
             # Hitung fitur glcm
-            contrast = greycoprops(glcm, 'contrast')[0][0]
+            contrast = greycoprops(glcm, 'correlation')[0][0]
             homogeneity = greycoprops(glcm, 'homogeneity')[0][0]
-            energy = greycoprops(glcm, 'energy')[0][0]
+            energy = greycoprops(glcm, 'contrast')[0][0]
 
             # Memasukkan nilai R,G,B, Contrast, Homogeneity dan Energy  ke dalam file CSV dengan label tertentu
             writer.writerow([(x-1), mean_r, mean_g, mean_b,
