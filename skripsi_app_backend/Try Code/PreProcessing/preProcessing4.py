@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Load image
-img = cv2.imread('../../Code/Dataset/New Dataset/20230529_090918.jpg')
+img = cv2.imread('../../Code/Dataset/New Dataset/20230529_091443.jpg')
 
 # Konversi gambar ke skala abu-abu
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

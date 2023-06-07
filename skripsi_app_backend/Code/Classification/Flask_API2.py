@@ -19,26 +19,30 @@ if not os.path.exists('uploads'):
 nb = joblib.load('../Model/NB_Model_HSV_GLCM[0]4_5Label.pkl')
 
 
-def preprocess_and_extract_features(image):
-    # Load image
-    # image = cv2.imread(image_path)
+def preprocessing_extract_features(image):
 
-    # Crop image menjadi kotak (1:1)
-    height, width, channels = image.shape
-    if height > width:
-        crop_size = width
-        y = int((height - width) / 2)
-        x = 0
-    else:
-        crop_size = height
-        x = int((width - height) / 2)
-        y = 0
-    cropped_image = image[y:y+crop_size, x:x+crop_size]
+    # Konversi gambar ke skala abu-abu
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # Resize image
-    resized_image = cv2.resize(cropped_image, (1080, 1080))
+    # Thresholding thresholding pada gambar untuk memisahkan objek dari latar belakang
+    _, thresh = cv2.threshold(
+        gray, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
-    # Convert image ke HSV
+    # Temukan kontur pada gambar yang telah dithreshold dan dapatkan kontur terbesar yang diasumsikan sebagai objek daun
+    contours, _ = cv2.findContours(
+        thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnt = max(contours, key=cv2.contourArea)
+
+    # Dapatkan koordinat bounding box (kotak pembatas) dari kontur
+    x, y, w, h = cv2.boundingRect(cnt)
+
+    # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
+    roi = image[y:y+h, x:x+w]
+
+    # resize ROI hasil segmentasi
+    resized_image = cv2.resize(roi, (720, 720))
+
+    # Convert image to HSV
     hsv = cv2.cvtColor(resized_image, cv2.COLOR_BGR2HSV)
 
     # Perhitungan rata rata hsv
@@ -81,23 +85,27 @@ def classify():
     image = cv2.imread(image_path)
 
     # Melakukan pre processing dan ekstraksi fitur
-    X = preprocess_and_extract_features(image)
+    X = preprocessing_extract_features(image)
 
     # Mengubah bentuk array
     X_reshaped = X.reshape(1, -1)
 
     # Membuat dataframe menggunakan nama fitur
     feature_names = ['H', 'S', 'V', 'correlation', 'homogeneity', 'contrast']
+
     X_new = pd.DataFrame(data=X_reshaped, columns=feature_names)
 
     # Predict label
     y_pred = nb.predict(X_new)
 
+    # Print label
+    print(f'Label: {y_pred[0]}')
+
     # Hasil
     result = int(y_pred[0])
 
     # Print label
-    print(f'Label: {y_pred[0]}')
+    # print(f'Label: {y_pred[0]}')
     return jsonify({'Label': result})
 
 

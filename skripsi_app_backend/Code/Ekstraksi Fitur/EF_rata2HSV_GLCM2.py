@@ -5,8 +5,7 @@ import numpy as np
 from skimage.feature import greycomatrix, greycoprops
 
 x = 0
-glcm_properties = ['correlation', 'homogeneity',
-                   'contrast']
+glcm_properties = ['correlation', 'homogeneity','contrast']
 angles = [0, 45, 90, 135]
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur

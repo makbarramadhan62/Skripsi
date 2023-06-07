@@ -59,7 +59,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
 
   Future<void> sendData() async {
     final now = DateTime.now();
-    final formattedTime = DateFormat('yyyy_MM_dd').format(now);
+    final formattedTime = DateFormat('yyyy_MM_dd_HH_mm_ss').format(now);
     final filename = 'image_$formattedTime.jpg';
     const int timeoutDurationInSeconds = 10;
 
@@ -68,7 +68,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
       dio.options.sendTimeout =
           const Duration(seconds: timeoutDurationInSeconds);
       const url =
-          'http://10.0.2.2:5000/klasifikasi'; // Ganti dengan URL endpoint API Anda
+          'http://192.168.29.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
       final imageBytes = widget.image!.readAsBytesSync();
 
       final formData = FormData.fromMap({
@@ -92,6 +92,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
           result = prediction;
           isLoading = false;
           isDetect = true;
+          print(result);
         });
       }
     } catch (error) {
@@ -179,7 +180,8 @@ class _PreviewScreenState extends State<PreviewScreen> {
                         : Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const FailedScreen()),
+                              builder: (context) => const FailedScreen(),
+                            ),
                             (route) => false,
                           );
                   },
