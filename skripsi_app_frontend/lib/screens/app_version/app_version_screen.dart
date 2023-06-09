@@ -21,7 +21,7 @@ class AppVersion extends StatelessWidget {
         iconTheme: const IconThemeData(color: kButtonClr),
         centerTitle: true,
         title: const Text(
-          "Apps Version",
+          "Versi Aplikasi",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class AppVersion extends StatelessWidget {
                     height: size.height * 0.025,
                   ),
                   const Text(
-                    "Version 1.0 Beta",
+                    "Versi 1.0 Beta",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,

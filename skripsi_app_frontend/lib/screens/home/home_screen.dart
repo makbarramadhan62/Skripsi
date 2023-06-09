@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         iconTheme: const IconThemeData(color: kHighlightTxtClr),
         centerTitle: true,
         title: const Text(
-          "Home",
+          "Beranda",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: size.height * 0.1,
                     ),
                     const Text(
-                      "Add an Image to",
+                      "Tambahkan Gambar untuk",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const Text(
-                      "Get Started",
+                      "Mulai Deteksi",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const Spacer(),
                 const Text(
-                  "Start detecting by adding a picture through the gallery or camera!",
+                  "Mulailah mendeteksi dengan menambahkan gambar melalui galeri atau kamera!",
                   style: TextStyle(
                     color: kSubTxtClr,
                     fontSize: 12,
@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text(
-                                    "Select Method",
+                                    "Pilih Metode",
                                     style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       }
                                     },
-                                    text: "Gallery",
+                                    text: "Galeri",
                                   ),
                                   const SizedBox(
                                     height: 15,
@@ -208,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       }
                                     },
-                                    text: "Camera",
+                                    text: "Kamera",
                                   )
                                 ],
                               ),
@@ -230,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   child: const Text(
-                    "Add Image",
+                    "Tambahkan Gambar",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

@@ -14,7 +14,7 @@ class FailedScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: kButtonClr),
         centerTitle: true,
         title: const Text(
-          "Failed",
+          "Koneksi Gagal",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class FailedScreen extends StatelessWidget {
                     height: 300,
                   ),
                   const Text(
-                    "Failed Connect to the Server",
+                    "Gagal Terhubung ke Server",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -71,7 +71,7 @@ class FailedScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  "Back to Home",
+                  "Kembali ke Beranda",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

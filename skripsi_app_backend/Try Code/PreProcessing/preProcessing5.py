@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 
 # Load image
-img = cv2.imread('../../Code/Dataset/New Dataset/20230529_091828.jpg')
+img = cv2.imread(
+    '../../Code/Dataset/Raw/2_Label/DataSet_Training/Sehat/daun_sehat (10).jpg')
 
 # Konversi gambar ke skala abu-abu
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -25,7 +26,7 @@ roi = img[y:y+h, x:x+w]
 cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 10)
 
 # Resize image
-resized_img = cv2.resize(img, (360, 640))
+resized_img = cv2.resize(img, (720, 720))
 
 # Tampilkan gambar asli, ROI, dan gambar hasil segmentasi
 cv2.imshow('Original', resized_img)

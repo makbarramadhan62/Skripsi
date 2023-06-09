@@ -49,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
                         height: 10,
                       ),
                       const Text(
-                        "Welcome to",
+                        "Selamat Datang di",
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class WelcomeScreen extends StatelessWidget {
                   const Spacer(),
                   const Center(
                     child: Text(
-                      "By clicking on Get Started, you agree to grapsense`s Terms and Conditions of Use",
+                      "Dengan mengklik Mulai, Anda menyetujui Syarat dan Ketentuan Penggunaan grapsense",
                       style: TextStyle(
                         color: kSubTxtClr,
                         fontSize: 12,
@@ -141,7 +141,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      "Get Started",
+                      "Mulai",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

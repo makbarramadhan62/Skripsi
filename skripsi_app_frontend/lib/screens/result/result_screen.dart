@@ -20,7 +20,7 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Classification Results",
+          "Hasil Deteksi",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                   child: const Text(
-                    "Back to Home",
+                    "Kembali ke Beranda",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

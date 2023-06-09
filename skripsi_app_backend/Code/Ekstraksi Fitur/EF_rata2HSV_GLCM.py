@@ -7,13 +7,13 @@ from skimage.feature import greycomatrix, greycoprops
 x = 0
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/with_Background/5_label/HSV_GLCM/HSV_GLCM[0]4_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/5_Label/HSV_GLCM/HSV_GLCM[0]4_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V', 'correlation', 'homogeneity', 'contrast'])
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/with_Background/5_label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/PreProcessed/5_Label/DataSet_Training'):
 
         x = x+1
         # mengambil nama folder terakhir dari root

@@ -5,18 +5,17 @@ import numpy as np
 from skimage.feature import greycomatrix, greycoprops
 
 x = 0
-glcm_properties = ['correlation', 'homogeneity',
-                   'contrast']
+glcm_properties = ['correlation', 'homogeneity', 'contrast']
 angles = [0, 45, 90, 135]
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/with_Background/5_label/RGB_GLCM/RGB_GLCM[all]4_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/2_Label/RGB_GLCM/RGB_GLCM[all]4_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'R', 'G', 'B'] + [f'{prop} {angle}' for prop in glcm_properties for angle in angles])
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/with_Background/5_label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Training'):
 
         x = x+1
         # mengambil nama folder terakhir dari root

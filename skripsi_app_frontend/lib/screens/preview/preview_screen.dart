@@ -119,7 +119,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
         ),
         centerTitle: true,
         title: const Text(
-          "Preview",
+          "Pratinjau",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -214,7 +214,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                               width: 10,
                             ),
                             Text(
-                              "Please Wait...",
+                              "Tunggu Sebentar...",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -223,7 +223,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                           ],
                         )
                       : const Text(
-                          "Detect",
+                          "Deteksi",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

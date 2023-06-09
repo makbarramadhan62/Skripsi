@@ -22,7 +22,7 @@ class DatasetScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: kButtonClr),
         centerTitle: true,
         title: const Text(
-          "Dataset Info",
+          "Informasi Dataset",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,

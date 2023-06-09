@@ -42,7 +42,7 @@ class _SideBarState extends State<SideBar> {
                 ),
                 SizedBox(height: size.height * 0.025),
                 buildMenuItem(
-                  text: 'Dataset Info',
+                  text: 'Informasi Dataset',
                   icon: Icons.dataset_outlined,
                   onClicked: () {
                     Navigator.pop(context);
@@ -55,7 +55,7 @@ class _SideBarState extends State<SideBar> {
                 ),
                 SizedBox(height: size.height * 0.025),
                 buildMenuItem(
-                  text: 'How to use this app?',
+                  text: 'Cara Penggunaan',
                   icon: Icons.question_mark_outlined,
                   onClicked: () {
                     Navigator.pop(context);
@@ -68,7 +68,7 @@ class _SideBarState extends State<SideBar> {
                 ),
                 SizedBox(height: size.height * 0.025),
                 buildMenuItem(
-                  text: 'App Version',
+                  text: 'Versi Aplikasi',
                   icon: Icons.info_outline,
                   onClicked: () {
                     Navigator.pop(context);
@@ -84,7 +84,7 @@ class _SideBarState extends State<SideBar> {
                   thickness: 2,
                 ),
                 buildMenuItem(
-                  text: 'Exit',
+                  text: 'Keluar',
                   icon: Icons.logout,
                   onClicked: () async {
                     final action = await AlertDialogs.yesCancelDialog(

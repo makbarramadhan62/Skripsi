@@ -29,7 +29,7 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.125),
             child: const Text(
-              "Click Get Started to start using the App",
+              "Klik Memulai untuk mulai menggunakan Aplikasi",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.125),
             child: const Text(
-              "Click Add Image to Select Method",
+              "Klik Tambahkan Gambar untuk Memilih Metode",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.125),
             child: const Text(
-              "Select Method to Add Image",
+              "Pilih Metode untuk Menambahkan Gambar",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -98,7 +98,7 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.125),
             child: const Text(
-              "Click Detect to Start Detecting the Image",
+              "Klik Deteksi untuk Mulai Mendeteksi Gambar",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -121,7 +121,7 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.125),
             child: const Text(
-              "The Result will be Display in the Classification Result",
+              "Hasilnya akan ditampilkan di Hasil Deteksi",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -148,7 +148,7 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
         iconTheme: const IconThemeData(color: kButtonClr),
         centerTitle: true,
         title: const Text(
-          "How to Use this App?",
+          "Cara Penggunaan",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
