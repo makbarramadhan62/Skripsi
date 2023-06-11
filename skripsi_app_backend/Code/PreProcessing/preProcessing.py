@@ -50,7 +50,7 @@ for root, dirs, files in walk("../Dataset/Raw/2_Label/DataSet_Training/Sehat"):
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Training/Sehat/" +
                         "Data ke-" + str(a)+".jpg", resized_roi)
@@ -83,7 +83,7 @@ for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Training/Tidak_Seh
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Training/Tidak_Sehat/" +
                         "Data ke-" + str(b)+".jpg", resized_roi)
@@ -117,7 +117,7 @@ for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Testing/Sehat"):
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Testing/Sehat/" +
                         "Data ke-" + str(c)+".jpg", resized_roi)
@@ -151,7 +151,7 @@ for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Testing/Tidak_Seha
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Testing/Tidak_Sehat/" +
                         "Data ke-" + str(d)+".jpg", resized_roi)
@@ -185,7 +185,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/bercak_da
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/bercak_daun/" +
                         "Data ke-" + str(e)+".jpg", resized_roi)
@@ -219,7 +219,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/bercak_me
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/bercak_merah/" +
                         "Data ke-" + str(f)+".jpg", resized_roi)
@@ -254,7 +254,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/daun_seha
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/daun_sehat/" +
                         "Data ke-" + str(g)+".jpg", resized_roi)
@@ -289,7 +289,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/embun_bul
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/Embun_Bulu/" +
                         "Data ke-" + str(p)+".jpg", resized_roi)
@@ -323,7 +323,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/hama_tung
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/hama_tungau/" +
                         "Data ke-" + str(i)+".jpg", resized_roi)
@@ -357,7 +357,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/bercak_dau
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/bercak_daun/" +
                         "Data ke-" + str(j)+".jpg", resized_roi)
@@ -391,7 +391,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/bercak_mer
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/bercak_merah/" +
                         "Data ke-" + str(k)+".jpg", resized_roi)
@@ -425,7 +425,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/daun_sehat
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/daun_sehat/" +
                         "Data ke-" + str(l)+".jpg", resized_roi)
@@ -459,7 +459,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/embun_bulu
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/embun_bulu/" +
                         "Data ke-" + str(m)+".jpg", resized_roi)
@@ -493,7 +493,7 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/hama_tunga
             # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
             roi = img[y:y+h, x:x+w]
 
-            resized_roi = cv2.resize(roi, (720, 720))
+            resized_roi = cv2.resize(roi, (1080, 1080))
 
             cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/hama_tungau/" +
                         "Data ke-" + str(n)+".jpg", resized_roi)

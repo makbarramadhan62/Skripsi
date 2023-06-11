@@ -69,6 +69,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
           const Duration(seconds: timeoutDurationInSeconds);
       const url =
           'http://192.168.29.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
+      // 'http://10.0.2.2:5000/klasifikasi'; // Ganti dengan URL endpoint API
       final imageBytes = widget.image!.readAsBytesSync();
 
       final formData = FormData.fromMap({
@@ -92,7 +93,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
           result = prediction;
           isLoading = false;
           isDetect = true;
-          print(result);
+          // print("label = $result");
         });
       }
     } catch (error) {
@@ -171,7 +172,9 @@ class _PreviewScreenState extends State<PreviewScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ResultScreen(
-                                dataInfo: data[result!],
+                                dataInfo: data[result! - 1],
+                                image: widget.image,
+                                result: result!,
                               ),
                             ),
                             (route) => false,
