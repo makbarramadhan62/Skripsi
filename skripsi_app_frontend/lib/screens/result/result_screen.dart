@@ -49,13 +49,6 @@ class _ResultScreenState extends State<ResultScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Image.asset(
-                //   "assets/images/gambar_daun_down.png",
-                //   width: size.width * 0.75,
-                // ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -75,7 +68,6 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: size.height * 0.05,
                 ),
@@ -93,7 +85,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 Text(
                   widget.dataInfo.suggestions,
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
                     fontWeight: FontWeight.w400,
                     color: kBlackClr,
                   ),

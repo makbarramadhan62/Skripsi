@@ -1,0 +1,34 @@
+Note Validasi
+- Hama Tungau -> Hama Tungau Merah
+- Embun bulu -> embun tepung palsu
+- Embun tepung palsu dan Bercak daun tukar dataset
+
+referensi untuk aplikasi (deskripsi dan pengendalian)
+- Tungau Merah 
+(http://cybex.pertanian.go.id/mobile/artikel/84969/Cara-Mengendalikan-Hama-Pada-Tanaman-Anggur/)
+(Accessed : 12 Juni 2023)
+
+HAMA TUNGAU MERAH (Tetranycus sp.)
+Tungau Merah biasanya menyerang daun dengan cara menghisap cairan daun tanaman anggur. Hama ini juga menyebabkan terjadinya bercak-bercak pada daun hingga berubah menjadi hitam, hingga membuat tanaman anggur menjadi kerdil dan produktifitas menurun.
+
+Cara Pengendalian:
+
+* Lakukan penyemprotan dengan akarisida berbahan aktif abamectin (numectin, alfamec, agrimec, demolish atau bamec)
+* Taburkan Bubur Bordo atau Bubur California pada daun
+
+- BERCAK MERAH
+(https://www.koppert.com/challenges/disease-control/pierces-disease-of-grapevine/)
+(Accessed : 12 Juni 2023)
+
+Gejala:
+- sebagian daun hijau mendadak mati dan berubah warna menjadi coklat dengan jaringan sekitarnya berubah menjadi kuning atau merah.
+- bagian daun yang kering menyebar dan keseluruhan daun bisa mengkerut dan rontok
+- Sulur yang terinfeksi kemudian akan mati dalam waktu 2-3 tahun. Varietas yang toleran akan dalam waktu lebih dari 5 tahun
+
+Cara Pengendalian:
+- Pengendalian vektor dengan menggunakan jaring atau insektisida
+- Pemusnahan tanaman inang liar dan gulma untuk mengurangi sumber penyakit
+- Perlakuan air panas untuk bahan stek (20 menit pada suhu 50°C atau 180 menit pada suhu 45°C)
+- Pemangkasan cabang sakit atau keseluruhan tanaman untuk membuang sumber penyakit
+- Pencegahan bisa dilakukan dengan menggunakan tanaman tahan
+

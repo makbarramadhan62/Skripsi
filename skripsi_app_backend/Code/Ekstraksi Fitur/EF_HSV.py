@@ -4,14 +4,14 @@ import os
 import csv
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/5_Label/HSV/HSV_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/5_Label/HSV/HSV_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['H', 'S', 'V', 'label'])
 
     a = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/5_Label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/Raw/5_Label/DataSet_Training'):
 
         a = a+1
 
@@ -58,14 +58,14 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/5_Label/HSV/HSV_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/5_Label/HSV/HSV_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['H', 'S', 'V', 'label'])
 
     b = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/5_Label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/Raw/5_Label/DataSet_Testing'):
 
         b = b+1
 
@@ -112,14 +112,14 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV/HSV_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV/HSV_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['H', 'S', 'V', 'label'])
 
     c = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Training'):
 
         c = c+1
 
@@ -166,14 +166,14 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV/HSV_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV/HSV_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['H', 'S', 'V', 'label'])
 
     d = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Testing'):
 
         d = d+1
 

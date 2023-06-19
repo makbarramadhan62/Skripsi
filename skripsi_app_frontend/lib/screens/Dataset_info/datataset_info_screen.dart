@@ -38,7 +38,7 @@ class DatasetScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Container(
               margin: const EdgeInsets.all(20),
-              height: size.height * 0.725,
+              height: dataset[index].height,
               width: size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -58,7 +58,7 @@ class DatasetScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: size.height * 0.05,
-                      width: size.width * 0.4,
+                      width: size.width * 0.55,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[200],
@@ -104,7 +104,7 @@ class DatasetScreen extends StatelessWidget {
                       height: size.height * 0.025,
                     ),
                     const Text(
-                      "Solusi",
+                      "Cara Pengendalian",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -114,72 +114,14 @@ class DatasetScreen extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.01,
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.panorama_fisheye_outlined,
-                          size: 16,
-                          color: kButtonClr,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.025,
-                        ),
-                        Expanded(
-                          child: Text(
-                            dataset[index].solusi_1,
-                            textAlign: TextAlign.justify,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      dataset[index].solusi_1,
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.panorama_fisheye_outlined,
-                          size: 16,
-                          color: kButtonClr,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.025,
-                        ),
-                        Expanded(
-                          child: Text(
-                            dataset[index].solusi_2,
-                            textAlign: TextAlign.justify,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.panorama_fisheye_outlined,
-                          size: 16,
-                          color: kButtonClr,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.025,
-                        ),
-                        Expanded(
-                          child: Text(
-                            dataset[index].solusi_3,
-                            textAlign: TextAlign.justify,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),

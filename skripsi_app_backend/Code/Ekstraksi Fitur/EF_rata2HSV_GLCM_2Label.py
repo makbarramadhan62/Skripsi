@@ -8,7 +8,7 @@ glcm_properties_1 = ['dissimilarity', 'correlation', 'homogeneity']
 angles = [0, 45, 90, 135]
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]1_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]1_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_1 for angle in angles])
@@ -16,7 +16,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]1_Training.csv', 'w'
     a = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Training'):
 
         a = a+1
         # mengambil nama folder terakhir dari root
@@ -56,7 +56,7 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]1_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]1_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_1 for angle in angles])
@@ -64,7 +64,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]1_Testing.csv', 'w',
     b = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Testing'):
 
         b = b+1
         # mengambil nama folder terakhir dari root
@@ -106,7 +106,7 @@ csvfile.close()
 glcm_properties_2 = ['dissimilarity', 'correlation', 'contrast']
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]2_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]2_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_2 for angle in angles])
@@ -114,7 +114,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]2_Training.csv', 'w'
     c = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Training'):
 
         c = c+1
         # mengambil nama folder terakhir dari root
@@ -154,7 +154,7 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]2_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]2_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_2 for angle in angles])
@@ -162,7 +162,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]2_Testing.csv', 'w',
     d = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Testing'):
 
         d = d+1
         # mengambil nama folder terakhir dari root
@@ -204,7 +204,7 @@ csvfile.close()
 glcm_properties_3 = ['dissimilarity', 'homogeneity', 'contrast']
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]3_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]3_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_3 for angle in angles])
@@ -212,7 +212,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]3_Training.csv', 'w'
     e = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Training'):
 
         e = e+1
         # mengambil nama folder terakhir dari root
@@ -252,7 +252,7 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]3_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]3_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_3 for angle in angles])
@@ -260,7 +260,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]3_Testing.csv', 'w',
     f = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Testing'):
 
         f = f+1
         # mengambil nama folder terakhir dari root
@@ -302,7 +302,7 @@ csvfile.close()
 glcm_properties_4 = ['correlation', 'homogeneity', 'contrast']
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]4_Training.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]4_Training.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_4 for angle in angles])
@@ -310,7 +310,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]4_Training.csv', 'w'
     g = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Training'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Training'):
 
         g = g+1
         # mengambil nama folder terakhir dari root
@@ -350,7 +350,7 @@ csvfile.close()
 
 
 # membuka file CSV untuk menyimpan hasil ekstraksi fitur
-with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]4_Testing.csv', 'w', newline='') as csvfile:
+with open('../CSV/cropped_manual/2_Label/HSV_GLCM/HSV_GLCM[all]4_Testing.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(
         ['label', 'H', 'S', 'V'] + [f'{prop} {angle}' for prop in glcm_properties_4 for angle in angles])
@@ -358,7 +358,7 @@ with open('../CSV/cropped_ROI/2_Label/HSV_GLCM/HSV_GLCM[all]4_Testing.csv', 'w',
     h = 0
 
     # melakukan ekstraksi fitur pada setiap folder
-    for root, dirs, files in os.walk('../Dataset/PreProcessed/2_Label/DataSet_Testing'):
+    for root, dirs, files in os.walk('../Dataset/Raw/2_Label/DataSet_Testing'):
 
         h = h+1
         # mengambil nama folder terakhir dari root
