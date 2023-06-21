@@ -1,4 +1,3 @@
-# from sklearn.metrics import accuracy_score, classification_report
 from flask import Flask, request, jsonify
 import cv2
 import numpy as np

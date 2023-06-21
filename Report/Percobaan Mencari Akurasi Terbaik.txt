@@ -1,0 +1,128 @@
+SKENARIO 1 - Crop
+
+glcm_properties = ['dissimilarity', 'correlation', 'homogeneity']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.80 - AKURASI_RGB: 0.70
+distance = [2] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.70
+distance = [3] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [4] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.70
+distance = [5] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+
+---------------------------------------------------------------------
+
+SKENARIO 2 - Crop
+
+glcm_properties = ['dissimilarity', 'correlation', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [2] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [3] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.60
+distance = [4] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.50
+distance = [5] - AKURASI_HSV: 0.55 - AKURASI_RGB: 0.55
+
+---------------------------------------------------------------------
+
+SKENARIO 3 - Crop
+
+glcm_properties = ['dissimilarity', 'homogeneity', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [2] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [3] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.60
+distance = [4] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.65
+distance = [5] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+
+---------------------------------------------------------------------
+
+SKENARIO 4 - Crop
+
+glcm_properties = ['correlation', 'homogeneity', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [2] - AKURASI_HSV: 0.80 - AKURASI_RGB: 0.70
+distance = [3] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.70
+distance = [4] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [5] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.55
+
+---------------------------------------------------------------------
+
+SKENARIO 5 - Crop
+
+glcm_properties = ['dissimilarity', 'correlation', 'homogeneity', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.80 - AKURASI_RGB: 0.75
+distance = [2] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.70
+distance = [3] - AKURASI_HSV: 0.75 - AKURASI_RGB: 0.65
+distance = [4] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.60
+distance = [5] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.65
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+SKENARIO 1 - ROI
+
+glcm_properties = ['dissimilarity', 'correlation', 'homogeneity']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.70
+distance = [2] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.75
+distance = [3] - AKURASI_HSV: 0.55 - AKURASI_RGB: 0.65
+distance = [4] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.65
+distance = [5] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.65
+
+---------------------------------------------------------------------
+
+SKENARIO 2 - ROI
+
+glcm_properties = ['dissimilarity', 'correlation', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.65
+distance = [2] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.65
+distance = [3] - AKURASI_HSV: 0.55 - AKURASI_RGB: 0.60
+distance = [4] - AKURASI_HSV: 0.50 - AKURASI_RGB: 0.60
+distance = [5] - AKURASI_HSV: 0.45 - AKURASI_RGB: 0.65
+
+---------------------------------------------------------------------
+
+SKENARIO 3 - ROI
+
+glcm_properties = ['dissimilarity', 'homogeneity', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.65
+distance = [2] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.55
+distance = [3] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.60
+distance = [4] - AKURASI_HSV: 0.70 - AKURASI_RGB: 0.65
+distance = [5] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.60
+
+---------------------------------------------------------------------
+
+SKENARIO 4 - ROI
+
+glcm_properties = ['correlation', 'homogeneity', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.60
+distance = [2] - AKURASI_HSV: 0.55 - AKURASI_RGB: 0.70
+distance = [3] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.65
+distance = [4] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.70
+distance = [5] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.65
+
+---------------------------------------------------------------------
+
+SKENARIO 5 - ROI
+
+glcm_properties = ['dissimilarity', 'correlation', 'homogeneity', 'contrast']
+angles = [0, 45, 90, 135]
+
+distance = [1] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.65
+distance = [2] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.70
+distance = [3] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.65
+distance = [4] - AKURASI_HSV: 0.60 - AKURASI_RGB: 0.65
+distance = [5] - AKURASI_HSV: 0.65 - AKURASI_RGB: 0.70

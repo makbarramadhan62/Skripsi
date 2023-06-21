@@ -22,7 +22,7 @@ m = 0
 n = 0
 
 # melakukan perulangan pada folder
-for root, dirs, files in walk("../Dataset/Raw/2_Label/DataSet_Training/Sehat"):
+for root, dirs, files in walk("../Dataset/augmentation_image/2_Label/DataSet_Training/Sehat"):
     # validasi apakah terdapat file pada folder
     if files:
         # perulangan pada masing masing file untuk melakukan preprocessing
@@ -52,12 +52,12 @@ for root, dirs, files in walk("../Dataset/Raw/2_Label/DataSet_Training/Sehat"):
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Training/Sehat/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/2_Label/DataSet_Training/Sehat/" +
                         "Data ke-" + str(a)+".jpg", resized_roi)
 
             print("DataSet_Training/Sehat/Data ke-" + str(a)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Training/Tidak_Sehat"):
+for root, dirs, files in walk("../Dataset/augmentation_image/2_Label/DataSet_Training/Tidak_Sehat"):
     if files:
         for file in files:
             b = b+1
@@ -85,13 +85,13 @@ for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Training/Tidak_Seh
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Training/Tidak_Sehat/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/2_Label/DataSet_Training/Tidak_Sehat/" +
                         "Data ke-" + str(b)+".jpg", resized_roi)
 
             print("DataSet_Training/Tidak_Sehat/Data ke-" + str(b)+".jpg")
 
 
-for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Testing/Sehat"):
+for root, dirs, files in walk("../Dataset/augmentation_image/2_Label/DataSet_Testing/Sehat"):
     if files:
         for file in files:
             c = c+1
@@ -119,13 +119,13 @@ for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Testing/Sehat"):
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Testing/Sehat/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/2_Label/DataSet_Testing/Sehat/" +
                         "Data ke-" + str(c)+".jpg", resized_roi)
 
             print("DataSet_Testing/Sehat/Data ke-" + str(c)+".jpg")
 
 
-for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Testing/Tidak_Sehat"):
+for root, dirs, files in walk("../Dataset/augmentation_image/2_Label/DataSet_Testing/Tidak_Sehat"):
     if files:
         for file in files:
             d = d+1
@@ -153,13 +153,13 @@ for root, dirs, files in walk("../Dataset/raw/2_Label/DataSet_Testing/Tidak_Seha
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/2_Label/DataSet_Testing/Tidak_Sehat/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/2_Label/DataSet_Testing/Tidak_Sehat/" +
                         "Data ke-" + str(d)+".jpg", resized_roi)
 
             print("DataSet_Testing/Tidak_Sehat/Data ke-" + str(d)+".jpg")
 
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/bercak_daun"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/DataSet_Training/bercak_daun"):
     if files:
         for file in files:
             e = e+1
@@ -187,13 +187,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/bercak_da
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/bercak_daun/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/DataSet_Training/bercak_daun/" +
                         "Data ke-" + str(e)+".jpg", resized_roi)
 
             print("DataSet_Training/bercak_daun/Data ke-" + str(e)+".jpg")
 
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/bercak_merah"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/DataSet_Training/bercak_merah"):
     if files:
         for file in files:
             f = f+1
@@ -221,14 +221,14 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/bercak_me
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/bercak_merah/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/DataSet_Training/bercak_merah/" +
                         "Data ke-" + str(f)+".jpg", resized_roi)
 
             print("DataSet_Training/bercak_merah/Data ke-" +
                   str(f)+".jpg")
 
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/daun_sehat"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/DataSet_Training/daun_sehat"):
     if files:
         for file in files:
             g = g+1
@@ -256,14 +256,14 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/daun_seha
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/daun_sehat/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/DataSet_Training/daun_sehat/" +
                         "Data ke-" + str(g)+".jpg", resized_roi)
 
             print("DataSet_Training/daun_sehat/Data ke-" +
                   str(g)+".jpg")
 
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/embun_bulu"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/DataSet_Training/embun_tepung_palsu"):
     if files:
         for file in files:
             p = p+1
@@ -291,13 +291,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/embun_bul
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/Embun_Bulu/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/DataSet_Training/embun_tepung_palsu/" +
                         "Data ke-" + str(p)+".jpg", resized_roi)
 
-            print("DataSet_Training/embun_bulu/Data ke-" +
+            print("DataSet_Training/embun_tepung_palsu/Data ke-" +
                   str(p)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/hama_tungau"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/DataSet_Training/hama_tungau_merah"):
     if files:
         for file in files:
             i = i+1
@@ -325,13 +325,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/DataSet_Training/hama_tung
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/DataSet_Training/hama_tungau/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/DataSet_Training/hama_tungau_merah/" +
                         "Data ke-" + str(i)+".jpg", resized_roi)
 
-            print("DataSet_Training/hama_tungau/Data ke-" +
+            print("DataSet_Training/hama_tungau_merah/Data ke-" +
                   str(i)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/bercak_daun"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/Dataset_Testing/bercak_daun"):
     if files:
         for file in files:
             j = j+1
@@ -359,13 +359,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/bercak_dau
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/bercak_daun/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/Dataset_Testing/bercak_daun/" +
                         "Data ke-" + str(j)+".jpg", resized_roi)
 
             print("Dataset_Testing/bercak_daun/Data ke-" +
                   str(j)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/bercak_merah"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/Dataset_Testing/bercak_merah"):
     if files:
         for file in files:
             k = k+1
@@ -393,13 +393,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/bercak_mer
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/bercak_merah/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/Dataset_Testing/bercak_merah/" +
                         "Data ke-" + str(k)+".jpg", resized_roi)
 
             print("Dataset_Testing/bercak_merah/Data ke-" +
                   str(k)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/daun_sehat"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/Dataset_Testing/daun_sehat"):
     if files:
         for file in files:
             l = l+1
@@ -427,13 +427,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/daun_sehat
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/daun_sehat/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/Dataset_Testing/daun_sehat/" +
                         "Data ke-" + str(l)+".jpg", resized_roi)
 
             print("Dataset_Testing/daun_sehat/Data ke-" +
                   str(l)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/embun_bulu"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/Dataset_Testing/embun_tepung_palsu"):
     if files:
         for file in files:
             m = m+1
@@ -461,13 +461,13 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/embun_bulu
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/embun_bulu/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/Dataset_Testing/embun_tepung_palsu/" +
                         "Data ke-" + str(m)+".jpg", resized_roi)
 
-            print("Dataset_Testing/embun_bulu/Data ke-" +
+            print("Dataset_Testing/embun_tepung_palsu/Data ke-" +
                   str(m)+".jpg")
 
-for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/hama_tungau"):
+for root, dirs, files in walk("../Dataset/augmentation_image/5_Label/Dataset_Testing/hama_tungau_merah"):
     if files:
         for file in files:
             n = n+1
@@ -495,8 +495,8 @@ for root, dirs, files in walk("../Dataset/raw/5_Label/Dataset_Testing/hama_tunga
 
             resized_roi = cv2.resize(roi, (1080, 1080))
 
-            cv2.imwrite("../Dataset/PreProcessed/5_Label/Dataset_Testing/hama_tungau/" +
+            cv2.imwrite("../Dataset/preprocessed_roi_augmentation/5_Label/Dataset_Testing/hama_tungau_merah/" +
                         "Data ke-" + str(n)+".jpg", resized_roi)
 
-            print("Dataset_Testing/hama_tungau/Data ke-" +
+            print("Dataset_Testing/hama_tungau_merah/Data ke-" +
                   str(n)+".jpg")
