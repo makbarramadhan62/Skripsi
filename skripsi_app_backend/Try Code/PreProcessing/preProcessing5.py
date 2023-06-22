@@ -3,7 +3,7 @@ import numpy as np
 
 # Load image
 img = cv2.imread(
-    '../../Code/Dataset/Raw/2_Label/DataSet_Training/Sehat/daun_sehat (10).jpg')
+    '../../Code/Dataset/preprocessed_roi_augmentation/5_label/dataset_training/embun_tepung_palsu/data ke-94.jpg')
 
 # Konversi gambar ke skala abu-abu
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
