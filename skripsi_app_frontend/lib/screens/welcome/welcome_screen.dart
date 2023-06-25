@@ -59,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
                       Row(
                         children: [
                           const Text(
-                            "Grapsense",
+                            "Grapesense",
                             style: TextStyle(
                               color: kHighlightTxtClr,
                               fontSize: 32,
@@ -95,7 +95,7 @@ class WelcomeScreen extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(right: 10),
                         child: Text(
-                          "Deteksi cepat penyakit anggur Anda berdasarkan warna daunnya dengan Grapesense!",
+                          "Deteksi cepat penyakit anggur anda berdasarkan warna daunnya dengan Grapesense!",
                           style: TextStyle(
                             color: kSubTxtClr,
                             fontSize: 12,
@@ -108,7 +108,7 @@ class WelcomeScreen extends StatelessWidget {
                   const Spacer(),
                   const Center(
                     child: Text(
-                      "Dengan mengklik Mulai, Anda menyetujui Syarat dan Ketentuan Penggunaan grapsense",
+                      "Dengan mengklik Mulai, anda menyetujui Syarat dan Ketentuan Penggunaan grapsense",
                       style: TextStyle(
                         color: kSubTxtClr,
                         fontSize: 12,

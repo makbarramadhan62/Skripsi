@@ -32,29 +32,26 @@ def preprocessing(image):
         y = 0
     cropped_image = image[y:y+crop_size, x:x+crop_size]
 
-    # Resize image
-    resized_image = cv2.resize(cropped_image, (1080, 1080))
+    # Konversi gambar ke skala abu-abu
+    gray = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)
 
-    # # Konversi gambar ke skala abu-abu
-    # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # Thresholding thresholding pada gambar untuk memisahkan objek dari latar belakang
+    _, thresh = cv2.threshold(
+        gray, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
-    # # Thresholding thresholding pada gambar untuk memisahkan objek dari latar belakang
-    # _, thresh = cv2.threshold(
-    #     gray, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+    # Temukan kontur pada gambar yang telah dithreshold dan dapatkan kontur terbesar yang diasumsikan sebagai objek daun
+    contours, _ = cv2.findContours(
+        thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnt = max(contours, key=cv2.contourArea)
 
-    # # Temukan kontur pada gambar yang telah dithreshold dan dapatkan kontur terbesar yang diasumsikan sebagai objek daun
-    # contours, _ = cv2.findContours(
-    #     thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    # cnt = max(contours, key=cv2.contourArea)
+    # Dapatkan koordinat bounding box (kotak pembatas) dari kontur
+    x, y, w, h = cv2.boundingRect(cnt)
 
-    # # Dapatkan koordinat bounding box (kotak pembatas) dari kontur
-    # x, y, w, h = cv2.boundingRect(cnt)
+    # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
+    roi = image[y:y+h, x:x+w]
 
-    # # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
-    # roi = image[y:y+h, x:x+w]
-
-    # # resize ROI hasil segmentasi
-    # resized_image = cv2.resize(roi, (720, 720))
+    # resize ROI hasil segmentasi
+    resized_image = cv2.resize(roi, (720, 720))
 
     return resized_image
 

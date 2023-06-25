@@ -4,7 +4,7 @@ import 'package:skripsi_app_frontend/screens/splash/splash_screen.dart';
 void main() {
   runApp(const MyApp());
 }
-  
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Grapsense Apps',
+      title: 'Grapesense Apps',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

@@ -160,7 +160,10 @@ class _HowToUseScreenState extends State<HowToUseScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 0,
+            vertical: 10,
+          ),
           child: Column(children: [
             Expanded(
               child: CarouselSlider(

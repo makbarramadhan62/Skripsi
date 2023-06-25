@@ -21,7 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker picker = ImagePicker();
 
   Future getImageCam() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.camera,
+      preferredCameraDevice: CameraDevice.rear,
+    );
     if (pickedFile != null) {
       image = File(pickedFile.path);
     }
@@ -243,67 +246,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-}
-
-enum DialogsAction { yes, cancel }
-
-class AlertDialogs {
-  static Future<DialogsAction> yesCancelDialog(
-    BuildContext context,
-    String title,
-    String body,
-  ) async {
-    final action = await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          title: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: kHighlightTxtClr,
-            ),
-          ),
-          content: Text(
-            body,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: kHighlightTxtClr,
-            ),
-          ),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MaterialButton(
-                  onPressed: () =>
-                      Navigator.of(context).pop(DialogsAction.cancel),
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                        color: kHighlightTxtClr, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                MaterialButton(
-                  onPressed: () => Navigator.of(context).pop(DialogsAction.yes),
-                  child: const Text(
-                    'Yes',
-                    style: TextStyle(
-                        color: kDangerClr, fontWeight: FontWeight.w700),
-                  ),
-                )
-              ],
-            )
-          ],
-        );
-      },
-    );
-    return (action != null) ? action : DialogsAction.cancel;
   }
 }

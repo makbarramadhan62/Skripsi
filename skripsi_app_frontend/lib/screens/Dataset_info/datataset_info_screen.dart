@@ -45,7 +45,7 @@ class DatasetScreen extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: kButtonClr.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 5,
                     offset: const Offset(0, 2),
