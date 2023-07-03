@@ -1,11 +1,12 @@
-from flask import Flask, request, jsonify
+import os
 import cv2
+import joblib
 import numpy as np
 import pandas as pd
-import joblib
-import os
+from sklearn import preprocessing
+from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-from skimage.feature import greycomatrix, greycoprops
+from skimage.feature import graycomatrix, graycoprops
 
 
 app = Flask(__name__)
@@ -15,10 +16,11 @@ if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
 # Load model
-nb = joblib.load('../Model/NB_Model_HSV_GLCM[all]3_5Label.pkl')
+nb = joblib.load(
+    '../Model/NB_RGB[Hist-16]_GLCM[S4-D5]_160_ROI_WithoutNormalize.pkl')
 
 
-def preprocessing(image):
+def preprocessing_image(image):
 
     # Crop image to square
     height, width, channels = image.shape
@@ -35,7 +37,7 @@ def preprocessing(image):
     # Konversi gambar ke skala abu-abu
     gray = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)
 
-    # Thresholding thresholding pada gambar untuk memisahkan objek dari latar belakang
+    # Thresholding pada gambar untuk memisahkan objek dari latar belakang
     _, thresh = cv2.threshold(
         gray, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
@@ -50,37 +52,94 @@ def preprocessing(image):
     # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
     roi = image[y:y+h, x:x+w]
 
+    # Buat mask dengan ukuran yang sama dengan gambar dan inisialisasi dengan nilai 0 (hitam)
+    mask = np.zeros(image.shape[:2], np.uint8)
+
+    # Tentukan model latar belakang (background) dan objek (foreground)
+    bgdModel = np.zeros((1, 65), np.float64)
+    fgdModel = np.zeros((1, 65), np.float64)
+
+    # Tentukan persegi panjang (rectangle) yang mencakup objek daun (ROI)
+    rect = (x, y, w, h)
+
+    # Algoritma GrabCut untuk menghapus latar belakang
+    cv2.grabCut(image, mask, rect, bgdModel,
+                fgdModel, 5, cv2.GC_INIT_WITH_RECT)
+
+    # Buat mask dimana piksel non-nol menunjukkan objek (foreground) yang mungkin
+    mask2 = np.where((mask == cv2.GC_FGD) | (
+        mask == cv2.GC_PR_FGD), 255, 0).astype('uint8')
+
+    # Balikkan mask ke negatif (putih menjadi hitam dan sebaliknya)
+    mask2_inv = cv2.bitwise_not(mask2)
+
+    # Buat hasil segmentasi dengan latar belakang putih
+    result = np.zeros_like(image)
+    result[np.where(mask2_inv == 255)] = (255, 255, 255)
+    result[np.where(mask2_inv == 0)] = image[np.where(mask2_inv == 0)]
+
+    # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
+    roi = result[y:y+h, x:x+w]
+
+    normalized_image = cv2.normalize(
+        roi, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
+
     # resize ROI hasil segmentasi
-    resized_image = cv2.resize(roi, (720, 720))
+    resized_image = cv2.resize(normalized_image, (1080, 1080))
+
+    # cv2.imshow("Image", image)
+    # cv2.imshow("Cropped Image", resized_image)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
     return resized_image
 
 
 def extract_features(image):
 
-    # Convert image to HSV
-    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    # Konversi gambar ke ruang warna rgb
+    rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    # membuat list untuk menyimpan hasil ekstraksi fitur
-    features = []
+    r, g, b = cv2.split(rgb_image)  # Pisahkan channel R, G, dan B
 
-    # Perhitungan rata rata hsv
-    mean_h, mean_s, mean_v = np.mean(hsv, axis=(0, 1))
-    features.append(np.mean(mean_h))
-    features.append(np.mean(mean_s))
-    features.append(np.mean(mean_v))
+    # histogram property
+    bins = 16
+
+    # Hitung histogram untuk channel H
+    hist_r = cv2.calcHist([r], [0], None, [bins], [0, 256])
+    # Mengubah histogram R menjadi array 1 dimensi
+    hist_r = np.ravel(hist_r)
+
+    # Hitung histogram untuk channel S
+    hist_g = cv2.calcHist([g], [0], None, [bins], [0, 256])
+    # Mengubah histogram G menjadi array 1 dimensi
+    hist_g = np.ravel(hist_g)
+
+    # Hitung histogram untuk channel V
+    hist_b = cv2.calcHist([b], [0], None, [bins], [0, 256])
+    # Mengubah histogram B menjadi array 1 dimensi
+    hist_b = np.ravel(hist_b)
+
+    # scenario GLCM properties
+    glcm_properties = ['dissimilarity',
+                       'correlation', 'homogeneity', 'contrast']
+    distance = [5]
 
     # Hitung matriks glcm
     image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    glcm = greycomatrix(image_gray, distances=[5], angles=[
+    glcm = graycomatrix(image_gray, distances=distance, angles=[
                         0, np.pi/4, np.pi/2, 3*np.pi/4], levels=256, symmetric=True, normed=True)
 
     # Hitung fitur glcm
-    glcm_properties = ['dissimilarity', 'homogeneity', 'contrast']
+    feature_glcm = []
     glcm_props = [
-        propery for name in glcm_properties for propery in greycoprops(glcm, name)[0]]
+        propery for name in glcm_properties for propery in graycoprops(glcm, name)[0]]
     for item in glcm_props:
-        features.append(item)
+        feature_glcm.append(item)
+
+    # menambahkan semua fitur ke list
+    features = []
+    features.append([*hist_r, *hist_g, *hist_b] + feature_glcm)
 
     return features
 
@@ -103,23 +162,29 @@ def classify():
     image = cv2.imread(image_path)
 
     # Melakukan pre processing dan ekstraksi fitur
-    preprocessed = preprocessing(image)
+    preprocessed = preprocessing_image(image)
     X = extract_features(preprocessed)
 
     # Mengubah bentuk array
     # X_reshaped = X.reshape(1, -1)
     X_reshaped = np.reshape(X, (1, -1))
 
-    # Membuat dataframe menggunakan nama fitur
-    glcm_properties = ['dissimilarity', 'homogeneity', 'contrast']
+    # inisialisasi atribut fitur untuk dataframe
+    glcm_properties = ['dissimilarity',
+                       'correlation', 'homogeneity', 'contrast']
     angles = [0, 45, 90, 135]
-    feature_names = ['H', 'S', 'V'] + \
-        [f'{prop} {angle}' for prop in glcm_properties for angle in angles]
+    bins = 16
 
-    X_new = pd.DataFrame(data=X_reshaped, columns=feature_names)
+    # Membuat dataframe menggunakan nama fitur
+    feature_names = ['hist_r' + str(i+1) for i in range(bins)] + ['hist_g' + str(i+1) for i in range(bins)] + [
+        'hist_b' + str(i+1) for i in range(bins)] + [f'{prop} {angle}' for prop in glcm_properties for angle in angles]
+
+    X = pd.DataFrame(data=X_reshaped, columns=feature_names)
+
+    normalization_data = preprocessing.normalize(X, norm="l2")
 
     # Predict label
-    y_pred = nb.predict(X_new)
+    y_pred = nb.predict(normalization_data)
 
     result = int(y_pred[0])
 

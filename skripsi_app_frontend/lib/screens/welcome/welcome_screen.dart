@@ -26,10 +26,10 @@ class WelcomeScreen extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "marmdhn",
                         style: TextStyle(
                           fontSize: 16,
@@ -37,18 +37,18 @@ class WelcomeScreen extends StatelessWidget {
                           color: kBlackClr,
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      const Icon(
+                      Icon(
                         Icons.circle,
                         size: 10,
                         color: kButtonClr,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      const Text(
+                      Text(
                         "Selamat Datang di",
                         style: TextStyle(
                           fontSize: 32,
@@ -58,7 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             "Grapesense",
                             style: TextStyle(
                               color: kHighlightTxtClr,
@@ -66,33 +66,15 @@ class WelcomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
-                          ),
-                          Container(
-                            height: size.height * 0.025,
-                            width: size.width * 0.15,
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color: kBetaClr,
-                                width: 2,
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Beta",
-                                style: TextStyle(color: kBetaClr),
-                              ),
-                            ),
                           ),
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(right: 10),
                         child: Text(
                           "Deteksi cepat penyakit anggur anda berdasarkan warna daunnya dengan Grapesense!",

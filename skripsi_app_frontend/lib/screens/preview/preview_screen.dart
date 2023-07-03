@@ -37,7 +37,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   }
 
   void _startTimer() {
-    const int timeoutDurationInSeconds = 10;
+    const int timeoutDurationInSeconds = 120;
     _timer = Timer(const Duration(seconds: timeoutDurationInSeconds), () {
       _cancelRequest('Request timed out');
     });
@@ -61,14 +61,14 @@ class _PreviewScreenState extends State<PreviewScreen> {
     final now = DateTime.now();
     final formattedTime = DateFormat('yyyy_MM_dd_HH_mm_ss').format(now);
     final filename = 'image_$formattedTime.jpg';
-    const int timeoutDurationInSeconds = 10;
+    const int timeoutDurationInSeconds = 120;
 
     try {
       final dio = Dio();
       dio.options.sendTimeout =
           const Duration(seconds: timeoutDurationInSeconds);
       const url =
-          'http://192.168.29.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
+          'http://192.168.249.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
       // 'http://10.0.2.2:5000/klasifikasi'; // Ganti dengan URL endpoint API
       final imageBytes = widget.image!.readAsBytesSync();
 

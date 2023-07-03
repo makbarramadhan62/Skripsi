@@ -17,8 +17,10 @@ else:
 cropped_image = image[y:y+crop_size, x:x+crop_size]
 
 # Resize image
-resized_image = cv2.resize(cropped_image, (1080, 1080))
+resized_image = cv2.resize(image, (512, 512))
+resized_crop_image = cv2.resize(cropped_image, (512, 512))
 
-cv2.imshow("Cropped Image", resized_image)
+cv2.imshow("Image", resized_image)
+cv2.imshow("Cropped Image", resized_crop_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
