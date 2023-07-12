@@ -26,6 +26,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   bool isLoading = false;
   bool isDetect = false;
   CancelToken? _cancelToken;
+  int timeoutDurationInSeconds = 30;
 
   late final DataInfo dataInfo;
 
@@ -37,8 +38,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   }
 
   void _startTimer() {
-    const int timeoutDurationInSeconds = 120;
-    _timer = Timer(const Duration(seconds: timeoutDurationInSeconds), () {
+    _timer = Timer(Duration(seconds: timeoutDurationInSeconds), () {
       _cancelRequest('Request timed out');
     });
   }
@@ -61,14 +61,13 @@ class _PreviewScreenState extends State<PreviewScreen> {
     final now = DateTime.now();
     final formattedTime = DateFormat('yyyy_MM_dd_HH_mm_ss').format(now);
     final filename = 'image_$formattedTime.jpg';
-    const int timeoutDurationInSeconds = 120;
 
     try {
       final dio = Dio();
-      dio.options.sendTimeout =
-          const Duration(seconds: timeoutDurationInSeconds);
+      dio.options.sendTimeout = Duration(seconds: timeoutDurationInSeconds);
       const url =
-          'http://192.168.249.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
+          'http://192.168.1.10:5000/klasifikasi'; // Ganti dengan URL endpoint API
+      // 'http://192.168.249.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
       // 'http://10.0.2.2:5000/klasifikasi'; // Ganti dengan URL endpoint API
       final imageBytes = widget.image!.readAsBytesSync();
 

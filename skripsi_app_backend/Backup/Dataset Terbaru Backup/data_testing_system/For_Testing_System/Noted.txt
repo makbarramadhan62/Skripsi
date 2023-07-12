@@ -1,0 +1,11 @@
+File yang terprediksi sesuai label
+
+Bercak Daun : 17
+
+Daun Sehat : 3, 6, 13, 14, 15, 16,
+
+Embun Tepung Palsu: 7, 9
+
+Hama Tungau Merah: 12, 18
+
+untuk skenario galeri : 7, 17

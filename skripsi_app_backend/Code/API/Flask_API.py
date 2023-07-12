@@ -17,25 +17,38 @@ if not os.path.exists('uploads'):
 
 # Load model
 nb = joblib.load(
-    '../Model/NB_RGB[Hist-16]_GLCM[S4-D5]_160_ROI_WithoutNormalize.pkl')
+    '../Model/NB_RGB[Hist-16]_GLCM[S4-D5]_160_ROI_5Label.pkl')
 
 
 def preprocessing_image(image):
 
-    # Crop image to square
-    height, width, channels = image.shape
-    if height > width:
-        crop_size = width
-        y = int((height - width) / 2)
-        x = 0
+    normalized_image = cv2.normalize(
+        image, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
+
+    # Crop image to 3:4 aspect ratio
+    height, width, channels = normalized_image.shape
+
+    target_ratio = 5 / 4
+
+    if height == width:
+        # Gambar sudah persegi, tidak perlu cropping
+        img = normalized_image
     else:
-        crop_size = height
-        x = int((width - height) / 2)
-        y = 0
-    cropped_image = image[y:y+crop_size, x:x+crop_size]
+        if height > width:
+            crop_height = int(width * target_ratio)
+            y = int((height - crop_height) / 2)
+            x = 0
+            cropped_image = normalized_image[y:y+crop_height, x:x+width]
+            img = cv2.resize(cropped_image, (600, 800))
+        else:
+            crop_height = int(height * (1 / target_ratio))
+            y = int((height - crop_height) / 2)
+            x = 0
+            cropped_image = normalized_image[y:y+crop_height, x:x+width]
+            img = cv2.resize(cropped_image, (600, 800))
 
     # Konversi gambar ke skala abu-abu
-    gray = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Thresholding pada gambar untuk memisahkan objek dari latar belakang
     _, thresh = cv2.threshold(
@@ -49,11 +62,8 @@ def preprocessing_image(image):
     # Dapatkan koordinat bounding box (kotak pembatas) dari kontur
     x, y, w, h = cv2.boundingRect(cnt)
 
-    # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
-    roi = image[y:y+h, x:x+w]
-
     # Buat mask dengan ukuran yang sama dengan gambar dan inisialisasi dengan nilai 0 (hitam)
-    mask = np.zeros(image.shape[:2], np.uint8)
+    mask = np.zeros(img.shape[:2], np.uint8)
 
     # Tentukan model latar belakang (background) dan objek (foreground)
     bgdModel = np.zeros((1, 65), np.float64)
@@ -63,8 +73,7 @@ def preprocessing_image(image):
     rect = (x, y, w, h)
 
     # Algoritma GrabCut untuk menghapus latar belakang
-    cv2.grabCut(image, mask, rect, bgdModel,
-                fgdModel, 5, cv2.GC_INIT_WITH_RECT)
+    cv2.grabCut(img, mask, rect, bgdModel, fgdModel, 5, cv2.GC_INIT_WITH_RECT)
 
     # Buat mask dimana piksel non-nol menunjukkan objek (foreground) yang mungkin
     mask2 = np.where((mask == cv2.GC_FGD) | (
@@ -74,25 +83,17 @@ def preprocessing_image(image):
     mask2_inv = cv2.bitwise_not(mask2)
 
     # Buat hasil segmentasi dengan latar belakang putih
-    result = np.zeros_like(image)
+    result = np.zeros_like(img)
     result[np.where(mask2_inv == 255)] = (255, 255, 255)
-    result[np.where(mask2_inv == 0)] = image[np.where(mask2_inv == 0)]
+    result[np.where(mask2_inv == 0)] = img[np.where(mask2_inv == 0)]
 
-    # Dapatkan ROI (Region of Interest) menggunakan koordinat bounding box
     roi = result[y:y+h, x:x+w]
 
-    normalized_image = cv2.normalize(
-        roi, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
+    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-    # resize ROI hasil segmentasi
-    resized_image = cv2.resize(normalized_image, (1080, 1080))
+    resized_roi = cv2.resize(roi, (1080, 1080))
 
-    # cv2.imshow("Image", image)
-    # cv2.imshow("Cropped Image", resized_image)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
-    return resized_image
+    return resized_roi
 
 
 def extract_features(image):
@@ -189,7 +190,7 @@ def classify():
     result = int(y_pred[0])
 
     # Print label
-    print(f'Label: {result}')
+    print("Label: ", result)
     return jsonify({'Label': result})
 
 

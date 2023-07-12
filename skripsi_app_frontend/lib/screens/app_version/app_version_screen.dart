@@ -48,7 +48,7 @@ class AppVersion extends StatelessWidget {
                     height: size.height * 0.025,
                   ),
                   const Text(
-                    "Versi 1.0 Beta",
+                    "Beta Version",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
