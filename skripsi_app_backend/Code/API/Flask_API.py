@@ -16,8 +16,7 @@ if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
 # Load model
-nb = joblib.load(
-    '../Model/NB_RGB[Hist-16]_GLCM[S4-D5]_160_ROI_5Label.pkl')
+nb = joblib.load('../Model/NB_RGB[Hist-16]_GLCM[S5-D5]_160_ROI_5Label.pkl')
 
 
 def preprocessing_image(image):

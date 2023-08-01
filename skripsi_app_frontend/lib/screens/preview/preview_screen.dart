@@ -66,8 +66,8 @@ class _PreviewScreenState extends State<PreviewScreen> {
       final dio = Dio();
       dio.options.sendTimeout = Duration(seconds: timeoutDurationInSeconds);
       const url =
-          'http://192.168.1.10:5000/klasifikasi'; // Ganti dengan URL endpoint API
-      // 'http://192.168.249.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
+          // 'http://192.168.1.10:5000/klasifikasi'; // Ganti dengan URL endpoint API
+          'http://192.168.164.36:5000/klasifikasi'; // Ganti dengan URL endpoint API
       // 'http://10.0.2.2:5000/klasifikasi'; // Ganti dengan URL endpoint API
       final imageBytes = widget.image!.readAsBytesSync();
 
