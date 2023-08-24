@@ -39,7 +39,7 @@ def preprocessing_extract_features(image):
     roi = image[y:y+h, x:x+w]
 
     # resize ROI hasil segmentasi
-    resized_image = cv2.resize(roi, (720, 720))
+    resized_image = cv2.resize(roi, (1080, 1080))
 
     # Convert image to HSV
     hsv = cv2.cvtColor(resized_image, cv2.COLOR_BGR2HSV)
